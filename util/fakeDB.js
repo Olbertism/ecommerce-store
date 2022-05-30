@@ -43,10 +43,10 @@ export const items = [
   },
   {
     itemId: '6',
-    itemName: 'Bespin Air Cab',
+    itemName: 'Cloud car',
     itemType: 'landVessel',
     itemPrice: '7500',
-    itemStockQuantity: '1',
+    itemStockQuantity: '5',
     itemDescription: '',
   },
 ];
