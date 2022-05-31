@@ -6,7 +6,7 @@ import { getItems } from '../util/database';
 // import { items as DBItems } from '../util/fakeDB';
 
 export default function Cart(props) {
-  console.log('props of cart: ', props);
+  // console.log('props of cart: ', props);
   const [cartState, setCartState] = useState(props.cart);
   const [sum, setSum] = useState(0);
 
@@ -97,7 +97,7 @@ export async function getServerSideProps(context) {
 
   // cart cookie
   const cart = JSON.parse(context.req.cookies.cart || '[]');
-  console.log(cart);
+  console.log("cart from cart serverside: ", cart);
 
   return { props: { cart: cart, items: databaseItems } };
 }

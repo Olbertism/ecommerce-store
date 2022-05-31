@@ -16,9 +16,9 @@ const itemPageStyles = css`
 `;
 
 export default function Ship(props) {
-  console.log('shipID props are: ', props);
+  // console.log('shipID props are: ', props);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  console.log('selected quantity: ', selectedQuantity);
+  // console.log('selected quantity: ', selectedQuantity);
 
   if (!props.ship) {
     return (

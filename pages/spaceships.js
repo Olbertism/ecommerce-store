@@ -53,7 +53,7 @@ export default function Spaceships(props) {
 
 export async function getServerSideProps() {
   const itemArray = await getItems()
-  console.log(itemArray)
+  // console.log(itemArray)
   /* const spaceShipArray = items.filter((item) => {
     return item.itemType === 'spaceShip' ? true : false;
   }); */

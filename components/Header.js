@@ -22,7 +22,7 @@ const rightMenuWrapperStyles = css`
 `;
 
 export default function Header(props) {
-  console.log('this is props of header: ', props);
+  // console.log('this is props of header: ', props);
 
   return (
     <header css={headerStyles}>
