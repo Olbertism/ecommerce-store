@@ -1,8 +1,5 @@
 import { css } from '@emotion/react';
-import Cookies from 'js-cookie';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { getParsedCookie } from '../util/cookieHandler';
 
 const headerStyles = css`
   display: flex;
@@ -26,16 +23,6 @@ const rightMenuWrapperStyles = css`
 
 export default function Header(props) {
   console.log('this is props of header: ', props);
-
-  /* console.log(props.cartCookie);
-  const [cartCounter, setCartCounter] = useState(0); */
-
-  /* useEffect(() => {
-    console.log('use effect in header triggered');
-    setCartCounter(props.cartCookie.length);
-
-
-  }, [props.cartCookie.length]); */
 
   return (
     <header css={headerStyles}>
