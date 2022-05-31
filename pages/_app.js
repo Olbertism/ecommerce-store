@@ -3,11 +3,14 @@ import { useState } from 'react';
 import Layout from '../components/Layout.js';
 import { getParsedCookie } from '../util/cookieHandler.js';
 
-export default function ECommerce({ Component, pageProps }) {
+export default function ECommerce({ Component, pageProps, props }) {
   console.log('_app pageProps is: ', pageProps);
+  console.log("_app props is: ", props)
 
-  // for reasons unknown to me, this needs to be in a ternary, otherwise the upcoming .length call targets undefined and throws an error
-  const cartCookie = getParsedCookie('cart') ? getParsedCookie('cart') : [];
+  // trouble...
+  // const cartCookie = getParsedCookie('cart') ? getParsedCookie('cart') : [];
+  const cartCookie = JSON.parse(props.cookies.cart)
+  console.log(cartCookie)
 
   console.log('cart cookie from _app.js', cartCookie);
   console.log('cart length in _app.js', cartCookie.length);
@@ -55,4 +58,24 @@ export default function ECommerce({ Component, pageProps }) {
       </Layout>
     </>
   );
+}
+
+
+
+/* Page.getInitialProps = async (ctx) => {
+  const res = await fetch('https://api.github.com/repos/vercel/next.js')
+  const json = await res.json()
+  return { stars: json.stargazers_count }
+} */
+
+ECommerce.getInitialProps = (context) => {
+  console.log("-------------------------------")
+  console.log(context.ctx.req.cookies)
+  return {props: {cookies: context.ctx.req.cookies}}
+}
+
+export function getServerSideProps(context) {
+  console.log("-------------------------------")
+  console.log(context.req.cookies)
+  return {props: {test: "TEST"}}
 }
