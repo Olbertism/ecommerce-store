@@ -6,7 +6,9 @@ import {
   getParsedCookie,
   setStringifiedCookie,
 } from '../../util/cookieHandler';
-import { items } from '../../util/fakeDB';
+import { getItem } from '../../util/database';
+
+// import { items } from '../../util/fakeDB';
 
 const itemPageStyles = css`
   width: 1200px;
@@ -14,6 +16,7 @@ const itemPageStyles = css`
 `;
 
 export default function Ship(props) {
+  console.log('shipID props are: ', props);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   console.log('selected quantity: ', selectedQuantity);
 
@@ -73,6 +76,7 @@ export default function Ship(props) {
                 ? getParsedCookie('cart')
                 : [];
               console.log('The cart is: ', currentCart);
+              console.log(currentCart.length)
 
               const selectedItem = currentCart.find(
                 (item) => item.itemId === props.ship.itemId,
@@ -96,6 +100,7 @@ export default function Ship(props) {
                   },
                 ];
                 setStringifiedCookie('cart', updatedCart);
+                props.setCartCounter(props.cartCounter + 1);
                 console.log('The cart is: ', updatedCart);
               }
             }}
@@ -108,14 +113,21 @@ export default function Ship(props) {
   );
 }
 
-export function getServerSideProps(context) {
-  const selectedShip = items.find((ship) => {
+export async function getServerSideProps(context) {
+  /*
+  const selectedShip =
+  items.find((ship) => {
     return ship.itemId === context.query.shipId;
-  });
+  }); */
+
+  const selectedShip = await getItem(context.query.shipId);
+  console.log(selectedShip);
 
   if (!selectedShip) {
     context.res.statusCode = 404;
   }
+
+  console.log(selectedShip);
 
   return {
     props: {

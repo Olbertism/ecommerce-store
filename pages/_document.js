@@ -1,11 +1,18 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Cookies from 'js-cookie';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
-export default function MyDocument() {
+export default function MyDocument(props) {
   // what is this and do I need this???
-  /*  async function getInitialProps(ctx) {
+  /* async function getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
-  } */
+  }
+  console.log(props)
+ */
+  // not working, investigate how to do...
+  /* const cookieValue = Cookies.get("cart");
+  console.log(cookieValue) */
+
 
   return (
     <Html>
@@ -24,3 +31,14 @@ export default function MyDocument() {
     </Html>
   );
 }
+
+/* export function getServerSideProps(context) {
+  // cart cookie
+  console.log(context.req)
+  const cart = JSON.parse(context.req.cookies.cart || '[]');
+  console.log("im a cart: ", cart);
+  console.log("----------")
+  console.log(cart.length);
+
+  return { props: { cartCounter: cart.length } };
+} */

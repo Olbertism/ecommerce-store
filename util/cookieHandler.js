@@ -17,3 +17,18 @@ export function getParsedCookie(key) {
 export function setStringifiedCookie(key, value) {
   Cookies.set(key, JSON.stringify(value));
 }
+
+
+export async function getParsedCookieAsync(key) {
+  const cookieValue = await Cookies.get(key); // Type is string | undefined
+
+  if (!cookieValue) {
+    return undefined;
+  }
+
+  try {
+    return await JSON.parse(cookieValue); // Type is string
+  } catch (err) {
+    return undefined;
+  }
+}

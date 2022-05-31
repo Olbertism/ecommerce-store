@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getItems } from '../util/database';
 import { items } from '../util/fakeDB';
 import { itemCardStyles, itemWrapperStyles } from './spaceships';
 
@@ -9,10 +10,10 @@ export default function LandVessels(props) {
     <div>
       <h1>Here you can find all available planetary vessels</h1>
       <div css={itemWrapperStyles}>
-        {props.landVessels.map((item) => {
+        {props.planetaries.map((item) => {
           return (
             <div
-              key={`items-landvessels-${item.itemId}`}
+              key={`items-planetaries-${item.itemId}`}
               className="itemCard"
               css={itemCardStyles}
             >
@@ -39,10 +40,13 @@ export default function LandVessels(props) {
   );
 }
 
-export function getServerSideProps() {
-  const landVesselArray = items.filter((item) => {
-    return item.itemType === 'landVessel' ? true : false;
+export async function getServerSideProps() {
+  const itemArray = await getItems();
+  console.log(itemArray);
+
+  const filteredItems = itemArray.filter((item) => {
+    return item.itemType === 'planetary' ? true : false;
   });
 
-  return { props: { landVessels: landVesselArray } };
+  return { props: { planetaries: filteredItems } };
 }

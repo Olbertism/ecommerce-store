@@ -3,6 +3,9 @@
 # environmentals
 .env
 
+# database
+/util/db_notes.sql
+
 # dependencies
 /node_modules
 /.pnp

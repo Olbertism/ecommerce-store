@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { items } from '../util/fakeDB';
+import { getItems } from '../util/database';
+
+// import { items } from '../util/fakeDB';
 
 export const itemWrapperStyles = css`
   max-width: 1200px;
@@ -49,10 +51,15 @@ export default function Spaceships(props) {
   );
 }
 
-export function getServerSideProps() {
-  const spaceShipArray = items.filter((item) => {
+export async function getServerSideProps() {
+  const itemArray = await getItems()
+  console.log(itemArray)
+  /* const spaceShipArray = items.filter((item) => {
     return item.itemType === 'spaceShip' ? true : false;
+  }); */
+  const filteredItems = itemArray.filter((item) => {
+    return item.itemType === 'space' ? true : false;
   });
 
-  return { props: { spaceShips: spaceShipArray } };
+  return { props: { spaceShips: filteredItems } };
 }

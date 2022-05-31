@@ -1,28 +1,28 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { setStringifiedCookie } from '../util/cookieHandler';
-import { items as DBItems } from '../util/fakeDB';
+import { getItems } from '../util/database';
+
+// import { items as DBItems } from '../util/fakeDB';
 
 export default function Cart(props) {
+  console.log('props of cart: ', props);
   const [cartState, setCartState] = useState(props.cart);
-  const [sum, setSum] = useState(0)
-  console.log(cartState);
+  const [sum, setSum] = useState(0);
 
-  useEffect(()=>{
-    console.log("use effect triggered!")
+  useEffect(() => {
     function calculateTotalSum() {
       let total = 0;
       cartState.map((cartItem) => {
         return (total +=
-          DBItems.find((item) => {
+          props.items.find((item) => {
             return cartItem.itemId === item.itemId;
           }).itemPrice * cartItem.itemQuantity);
       });
-      setSum(total)
-      //return total;
+      setSum(total);
     }
-    calculateTotalSum()
-  }, [cartState])
-
+    calculateTotalSum();
+  }, [cartState, props.items]);
 
   return (
     <div>
@@ -34,7 +34,7 @@ export default function Cart(props) {
               <div key={`cart-${cartItem.itemId}`}>
                 <h2>
                   {
-                    DBItems.find((item) => {
+                    props.items.find((item) => {
                       return cartItem.itemId === item.itemId;
                     }).itemName
                   }
@@ -44,9 +44,11 @@ export default function Cart(props) {
                   <input
                     type="number"
                     min="1"
-                    max={DBItems.find((item) => {
-                      return cartItem.itemId === item.itemId;
-                    }).itemStockQuantity}
+                    max={
+                      props.items.find((item) => {
+                        return cartItem.itemId === item.itemId;
+                      }).itemStockQuantity
+                    }
                     defaultValue={cartItem.itemQuantity}
                     onChange={(event) => {
                       const updatedCart = cartState.slice();
@@ -67,6 +69,7 @@ export default function Cart(props) {
                     console.log('after filter: ', updatedCart);
                     setStringifiedCookie('cart', updatedCart);
                     setCartState(updatedCart);
+                    props.setCartCounter(props.cartCounter - 1);
                   }}
                 >
                   Remove from cart
@@ -78,14 +81,23 @@ export default function Cart(props) {
         <div>
           <p>Total sum: {sum} ₹</p>
         </div>
+        <div>
+          <Link href="/checkout">
+            <button data-test-id="cart-checkout">Checkout</button>
+          </Link>
+        </div>
       </main>
     </div>
   );
 }
 
-export function getServerSideProps(context) {
+export async function getServerSideProps(context) {
+  // database items
+  const databaseItems = await getItems();
+
+  // cart cookie
   const cart = JSON.parse(context.req.cookies.cart || '[]');
   console.log(cart);
 
-  return { props: { cart: cart } };
+  return { props: { cart: cart, items: databaseItems } };
 }

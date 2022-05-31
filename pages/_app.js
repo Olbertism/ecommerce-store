@@ -1,7 +1,23 @@
-import Layout from '../components/Layout.js';
 import { css, Global } from '@emotion/react';
+import { useState } from 'react';
+import Layout from '../components/Layout.js';
+import { getParsedCookie } from '../util/cookieHandler.js';
 
 export default function ECommerce({ Component, pageProps }) {
+  console.log('_app pageProps is: ', pageProps);
+
+  // for reasons unknown to me, this needs to be in a ternary, otherwise the upcoming .length call targets undefined and throws an error
+  const cartCookie = getParsedCookie('cart') ? getParsedCookie('cart') : [];
+
+  console.log('cart cookie from _app.js', cartCookie);
+  console.log('cart length in _app.js', cartCookie.length);
+
+  const [cartCounter, setCartCounter] = useState(cartCookie.length);
+
+  pageProps.cartCounter = cartCounter;
+  pageProps.setCartCounter = setCartCounter;
+  console.log('cartCounter is: ', cartCounter);
+
   return (
     <>
       <Global
@@ -34,7 +50,7 @@ export default function ECommerce({ Component, pageProps }) {
           }
         `}
       />
-      <Layout>
+      <Layout {...pageProps}>
         <Component {...pageProps} />
       </Layout>
     </>
