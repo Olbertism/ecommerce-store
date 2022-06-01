@@ -2,12 +2,11 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getItems } from '../util/database';
-import { items } from '../util/fakeDB';
 import { itemCardStyles, itemWrapperStyles } from './spaceships';
 
 export default function LandVessels(props) {
   return (
-    <div>
+    <div className='mainWrapper'>
       <h1>Here you can find all available planetary vessels</h1>
       <div css={itemWrapperStyles}>
         {props.planetaries.map((item) => {

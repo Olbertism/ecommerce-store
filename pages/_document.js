@@ -2,18 +2,7 @@ import Cookies from 'js-cookie';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 export default function MyDocument(props) {
-  // what is this and do I need this???
-  /* async function getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
-  }
-  console.log(props)
- */
-  // not working, investigate how to do...
-  /* const cookieValue = Cookies.get("cart");
-  console.log(cookieValue) */
-
-
+ 
   return (
     <Html>
       <Head>

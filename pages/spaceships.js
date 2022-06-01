@@ -3,11 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getItems } from '../util/database';
 
-// import { items } from '../util/fakeDB';
-
 export const itemWrapperStyles = css`
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -23,7 +19,7 @@ export const itemCardStyles = css`
 
 export default function Spaceships(props) {
   return (
-    <div>
+    <div className='mainWrapper'>
       <h1>Here you can find all available Space ships</h1>
       <div css={itemWrapperStyles}>
         {props.spaceShips.map((item) => {

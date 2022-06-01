@@ -8,21 +8,41 @@ import {
 } from '../../util/cookieHandler';
 import { getItem } from '../../util/database';
 
-// import { items } from '../../util/fakeDB';
+const itemProfileStyle = css`
+  display: flex;
+  font-size: 18px;
 
-const itemPageStyles = css`
-  width: 1200px;
-  margin: 0 auto;
+  img {
+    border-radius: 10px;
+  }
+`;
+
+const itemDataStyles = css`
+  padding: 25px;
+  div {
+    margin-bottom: 10px;
+  }
+  input {
+    width: 60px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+`;
+
+const inputAmountStyles = css`
+  label,
+  button {
+    padding-right: 5px;
+  }
 `;
 
 export default function Ship(props) {
   // console.log('shipID props are: ', props);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  // console.log('selected quantity: ', selectedQuantity);
 
   if (!props.ship) {
     return (
-      <div css={itemPageStyles}>
+      <div className="mainWrapper">
         <Head>
           <title>Page not found</title>
           <meta name="" content="not found" />
@@ -34,7 +54,7 @@ export default function Ship(props) {
   }
 
   return (
-    <div css={itemPageStyles}>
+    <div className="mainWrapper">
       <Head>
         <title>{props.ship.itemName}</title>
         <meta
@@ -45,68 +65,70 @@ export default function Ship(props) {
       {/* This h1 needs to stay for drone I think */}
       <h1>{props.ship.itemName}</h1>
 
-      <div>
+      <div css={itemProfileStyle}>
         <Image
           src={`/${props.ship.itemId}.jpg`}
           alt="Picture of the selected product"
           width="600"
           height="400"
         />
-        <div>
+        <div css={itemDataStyles}>
           <div>Price: {props.ship.itemPrice} ₹</div>
           <div>in Stock: {props.ship.itemStockQuantity}</div>
-        </div>
-        <div>
-          <label>
-            Amount
-            <input
-              type="number"
-              name="quantity"
-              min="1"
-              max={props.ship.itemStockQuantity}
-              defaultValue="1"
-              onChange={(event) => {
-                setSelectedQuantity(event.currentTarget.value);
-              }}
-            />
-          </label>
-          <button
-            onClick={() => {
-              const currentCart = getParsedCookie('cart')
-                ? getParsedCookie('cart')
-                : [];
-              console.log('The cart is: ', currentCart);
-              console.log(currentCart.length)
 
-              const selectedItem = currentCart.find(
-                (item) => item.itemId === props.ship.itemId,
-              );
+          <div css={inputAmountStyles}>
+            <label>
+              Amount
+              <input
+                type="number"
+                name="quantity"
+                min="1"
+                max={props.ship.itemStockQuantity}
+                defaultValue="1"
+                onChange={(event) => {
+                  setSelectedQuantity(event.currentTarget.value);
+                }}
+              />
+            </label>
+            <button
+              onClick={() => {
+                const currentCart = getParsedCookie('cart')
+                  ? getParsedCookie('cart')
+                  : [];
+                console.log('The cart is: ', currentCart);
+                console.log(currentCart.length);
 
-              if (selectedItem) {
-                selectedItem.itemQuantity =
-                  Number(selectedItem.itemQuantity) + Number(selectedQuantity);
-                console.log(
-                  'The item is already in the cart, updating quantity',
+                const selectedItem = currentCart.find(
+                  (item) => item.itemId === props.ship.itemId,
                 );
-                console.log('carts now: ', currentCart);
-                setStringifiedCookie('cart', currentCart);
-              } else {
-                const updatedCart = [
-                  ...currentCart,
-                  {
-                    itemId: props.ship.itemId,
-                    itemName: props.ship.itemName,
-                    itemQuantity: selectedQuantity,
-                  },
-                ];
-                setStringifiedCookie('cart', updatedCart);
-                props.setCartCounter(props.cartCounter + 1);
-                console.log('The cart is: ', updatedCart);
-              }
-            }}
-          >
-            Add to cart
-          </button>
+
+                if (selectedItem) {
+                  selectedItem.itemQuantity =
+                    Number(selectedItem.itemQuantity) +
+                    Number(selectedQuantity);
+                  console.log(
+                    'The item is already in the cart, updating quantity',
+                  );
+                  console.log('carts now: ', currentCart);
+                  setStringifiedCookie('cart', currentCart);
+                } else {
+                  const updatedCart = [
+                    ...currentCart,
+                    {
+                      itemId: props.ship.itemId,
+                      itemName: props.ship.itemName,
+                      itemQuantity: selectedQuantity,
+                    },
+                  ];
+                  setStringifiedCookie('cart', updatedCart);
+                  props.setCartCounter(props.cartCounter + 1);
+                  console.log('The cart is: ', updatedCart);
+                }
+              }}
+            >
+              Add to cart
+            </button>
+          </div>
         </div>
       </div>
     </div>

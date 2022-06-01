@@ -7,15 +7,22 @@ export default function ECommerce({ Component, pageProps, props }) {
   console.log('_app pageProps is: ', pageProps);
   console.log("_app props is: ", props)
 
-  // trouble...
-  // const cartCookie = getParsedCookie('cart') ? getParsedCookie('cart') : [];
+  // this is a stupid workaround, maybe can be removed once i figured out the props issue...
+  if (!pageProps) {
+    pageProps = {}
+  }
+  // yet a second stupid workaround...
+  if (!props.cookies.cart) {
+    props.cookies.cart = "[]"
+  }
   const cartCookie = JSON.parse(props.cookies.cart)
-  console.log(cartCookie)
+  console.log("cartCookie:", cartCookie)
 
   console.log('cart cookie from _app.js', cartCookie);
   console.log('cart length in _app.js', cartCookie.length);
 
   const [cartCounter, setCartCounter] = useState(cartCookie.length);
+  console.log("cartCounter:", cartCounter)
 
   pageProps.cartCounter = cartCounter;
   pageProps.setCartCounter = setCartCounter;
@@ -38,8 +45,39 @@ export default function ECommerce({ Component, pageProps, props }) {
             font-family: 'Play', sans-serif;
           }
 
+          div.mainWrapper {
+            min-height: 79vh;
+            max-width: 1200px;
+            margin: 60px auto;
+            margin-top: 0px;
+            position: relative;
+            top: 100px;
+            padding-bottom: 2.5rem;
+          }
+
+          div.mainWrapper h1 {
+            margin-top: 0px;
+            margin-left: 20px;
+          }
+
+          div.mainWrapper main {
+            margin-left: 20px;
+          }
+
           div.heroStage h1 {
             font-family: 'Orbitron', sans-serif;
+          }
+
+          button {
+            background-color: #fc2b2b;
+            color: #fff;
+            border: none;
+            padding: 3px;
+
+          }
+
+          button:hover {
+            background-color: #ff6666;
           }
 
           a {
@@ -62,15 +100,15 @@ export default function ECommerce({ Component, pageProps, props }) {
 
 
 
-/* Page.getInitialProps = async (ctx) => {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  const json = await res.json()
-  return { stars: json.stargazers_count }
-} */
 
+// Works only on pages where getServerSideProps is present... weird thing...
 ECommerce.getInitialProps = (context) => {
   console.log("-------------------------------")
+  // console.log(context.ctx.req)
   console.log(context.ctx.req.cookies)
+  if (!context.ctx.req.cookies) {
+    return {props: {cookies: []}}
+  }
   return {props: {cookies: context.ctx.req.cookies}}
 }
 

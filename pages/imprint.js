@@ -1,7 +1,7 @@
 export default function ThankYouPage() {
   return (
     <div className="mainWrapper">
-      <h1>THIS IS THE THANK YOU PAGE</h1>
+      <h1>THIS IS THE IMPRINT</h1>
     </div>
   );
 }
