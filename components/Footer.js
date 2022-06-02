@@ -5,14 +5,17 @@ const footerStyles = css`
   background-color: #121212;
 
   width: 100%;
-  height: 6rem;
+  height: 4.5rem;
   margin-top: 50px;
 `;
 
 const footerLinkStyles = css`
   color: #fff;
   display: flex;
-  align-items: flex-end;
+  font-size: 18px;
+  padding-right: 20px;
+  padding-top: 24px;
+  justify-content: flex-end;
 
   a {
     color: #fff;

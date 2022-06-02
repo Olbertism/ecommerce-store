@@ -39,9 +39,9 @@ export default function Home() {
               z-index: 10;
             `}
           >
-            United Outer Rim Ship Retail
+            Black Mesa
           </h1>
-          <p>Find the best ship deals in the whole galaxy, right here.</p>
+          <p>Delivering the future</p>
           <div
             css={css`
               box-shadow: 0px 0px 20px 20px white inset;

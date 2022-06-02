@@ -46,7 +46,7 @@ export default function ECommerce({ Component, pageProps, props }) {
           }
 
           div.mainWrapper {
-            min-height: 79vh;
+            min-height: 100vh;
             max-width: 1200px;
             margin: 60px auto;
             margin-top: 0px;
@@ -73,7 +73,6 @@ export default function ECommerce({ Component, pageProps, props }) {
             color: #fff;
             border: none;
             padding: 3px;
-
           }
 
           button:hover {
