@@ -51,10 +51,6 @@ const rightMenuWrapperStyles = css`
   }
 `;
 
-const logoWrapperStyles = css`
-  max-height: 30px;
-`;
-
 const logoStyles = css`
   display: inline-block;
   width: 45px;
@@ -92,7 +88,7 @@ const cartCounterInnerStyles = css`
 `;
 
 export default function Header(props) {
-  console.log('this is props of header: ', props);
+  // console.log('this is props of header: ', props);
 
   return (
     <header css={headerWrapperStyles}>

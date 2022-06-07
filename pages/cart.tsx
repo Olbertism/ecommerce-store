@@ -27,9 +27,13 @@ type Props = {
 };
 
 export default function Cart(props: Props  ) {
-  console.log('props of cart: ', props);
+  // console.log('props of cart: ', props);
   const [cartState, setCartState] = useState(props.cart);
   const [sum, setSum] = useState(0);
+
+ /*  if (!props) {
+    return <div>Something went terribly wrong</div>
+  } */
 
   useEffect(() => {
     function calculateTotalSum() {
@@ -142,10 +146,17 @@ export default function Cart(props: Props  ) {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   // database items
   const databaseItems = await getItems();
+  console.log(databaseItems);
 
   // cart cookie
   const cart = JSON.parse(context.req.cookies.cart || '[]') as CookieCartType[];
   console.log('cart from cart serverside: ', cart);
 
-  return { props: { cart: cart, items: databaseItems } };
+ /*  if (!databaseItems) {
+    console.log("APPARENTLY DB ITEMS ARE FALSY?...")
+    console.log(databaseItems);
+    return "What?"
+  } */
+
+  return { props: { cart: cart || [], items: databaseItems || [] } };
 }

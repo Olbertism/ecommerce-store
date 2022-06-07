@@ -4,12 +4,12 @@ import Layout from '../components/Layout.js';
 import { getParsedCookie } from '../util/cookieHandler';
 
 export default function ECommerce({ Component, pageProps, props }) {
-  console.log('_app pageProps is: ', pageProps);
-  console.log('_app props is: ', props);
+  /* console.log('_app pageProps is: ', pageProps);
+  console.log('_app props is: ', props); */
 
   useEffect(() => {
     const test = getParsedCookie('cart');
-    console.log('TEST COOKIE:', test);
+    // console.log('TEST COOKIE:', test);
   }, []);
 
   // this is a stupid workaround, maybe can be removed once i figured out the props issue...
@@ -21,10 +21,10 @@ export default function ECommerce({ Component, pageProps, props }) {
     props.cookies.cart = '[]';
   }
   const cartCookie = JSON.parse(props.cookies.cart);
-  console.log('cartCookie:', cartCookie);
 
+  /* console.log('cartCookie:', cartCookie);
   console.log('cart cookie from _app.js', cartCookie);
-  console.log('cart length in _app.js', cartCookie.length);
+  console.log('cart length in _app.js', cartCookie.length); */
 
   let totalCartItems = 0;
   for (let i = 0; i < cartCookie.length; i++) {
@@ -33,7 +33,7 @@ export default function ECommerce({ Component, pageProps, props }) {
   console.log('totalItems: ', totalCartItems);
 
   const [cartCounter, setCartCounter] = useState(totalCartItems);
-  
+
   console.log('cartCounter:', cartCounter);
 
   pageProps.cartCounter = cartCounter;
