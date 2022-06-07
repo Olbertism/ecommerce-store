@@ -8,7 +8,6 @@ const headerWrapperStyles = css`
   position: fixed;
   z-index: 9000;
   border-bottom: 1px solid #121212;
-
 `;
 
 const headerStyles = css`
@@ -38,7 +37,7 @@ const leftMenuWrapperStyles = css`
 
 const rightMenuWrapperStyles = css`
   display: flex;
-  width: 50%;
+  width: 30%;
   justify-content: space-evenly;
   padding-top: 10px;
 
@@ -46,14 +45,15 @@ const rightMenuWrapperStyles = css`
     width: 75%;
   }
   @media only screen and (max-width: 620px) {
-    font-size: 14px;
-    width: 85%;
+    font-size: 16px;
+    width: 100%;
+    padding-top: 13px;
   }
 `;
 
 const logoWrapperStyles = css`
-max-height: 30px;
-`
+  max-height: 30px;
+`;
 
 const logoStyles = css`
   display: inline-block;
@@ -65,7 +65,6 @@ const logoStyles = css`
   border: 0;
   max-width: 100%;
   vertical-align: middle;
-
 `;
 
 const cartWrapperStyles = css`
@@ -74,28 +73,38 @@ const cartWrapperStyles = css`
 `;
 
 const cartCounterStyles = css`
-  min-width: 25px;
+  min-width: 32px;
+  max-height: 32px;
   border: 1px solid #121212;
-  border-radius: 15px;
+  background-color: #121212;
+  color: #fff;
+  border-radius: 16px;
   display: flex;
   justify-content: center;
   padding-bottom: 10px;
+  position: relative;
+  top: -3px;
+`;
+
+const cartCounterInnerStyles = css`
+  position: relative;
+  top: 2px;
 `;
 
 export default function Header(props) {
-  // console.log('this is props of header: ', props);
+  console.log('this is props of header: ', props);
 
   return (
     <header css={headerWrapperStyles}>
       <div css={headerStyles}>
-        <div css={leftMenuWrapperStyles}><Link href="/">
+        <div css={leftMenuWrapperStyles}>
+          <Link href="/">
             <img src="/logo.svg" alt="logo" css={logoStyles} />
           </Link>
-
         </div>
         <div css={rightMenuWrapperStyles}>
-          <Link href="/spaceships">Space Ships</Link>
-          <Link href="/land-vessels">Planetary Vessels</Link>
+          <Link href="/products">Products</Link>
+
           <div css={cartWrapperStyles}>
             <Link href="/cart">Shopping Cart</Link>
             <div
@@ -103,7 +112,7 @@ export default function Header(props) {
               className="cartCounterWrapper"
               data-test-id="cart-count"
             >
-              {props.cartCounter}
+              <span css={cartCounterInnerStyles}>{props.cartCounter}</span>
             </div>
           </div>
         </div>

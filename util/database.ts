@@ -1,8 +1,14 @@
 import camelcaseKeys from 'camelcase-keys';
 import { config } from 'dotenv-safe';
 import postgres from 'postgres';
+import { DatabaseItemsType } from './types';
 
 config();
+
+// Type needed for the connection function below
+declare module globalThis {
+  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+}
 
 // Connect only once to the database (next.js bug workaround)
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
@@ -20,14 +26,15 @@ const sql = connectOneTimeToDatabase();
 
 // Functions for item inventory
 export async function getItems() {
-  const items = await sql`
+  const items = await sql<DatabaseItemsType[]>`
     SELECT * FROM items
   `;
+  
   return items.map((item) => camelcaseKeys(item));
 }
 
-export async function getItem(id) {
-  const [item] = await sql`
+export async function getItem(id : number) {
+  const [item] = await sql<[DatabaseItemsType | undefined]>`
     SELECT
       *
     FROM
@@ -35,5 +42,5 @@ export async function getItem(id) {
     WHERE
       item_id = ${id}
   `;
-  return camelcaseKeys(item);
+  return item && camelcaseKeys(item);
 }
