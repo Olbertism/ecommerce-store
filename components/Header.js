@@ -16,7 +16,6 @@ const headerStyles = css`
   vertical-align: middle;
   margin-top: 5px;
   margin-bottom: 5px;
-
   padding: 5px;
 `;
 
@@ -26,7 +25,7 @@ const leftMenuWrapperStyles = css`
 
   //max-height: 30px;
   @media only screen and (max-width: 960px) {
-    width: 25%;
+    width: 30%;
   }
   @media only screen and (max-width: 620px) {
     font-size: 14px;
@@ -60,6 +59,7 @@ const logoStyles = css`
   border: 0;
   max-width: 100%;
   vertical-align: middle;
+
 `;
 
 const cartWrapperStyles = css`
@@ -79,6 +79,11 @@ const cartCounterStyles = css`
   padding-bottom: 10px;
   position: relative;
   top: -3px;
+
+  @media only screen and (max-width: 620px) {
+    max-height: 26px;
+    min-width: 26px;
+  }
 `;
 
 const cartCounterInnerStyles = css`
@@ -98,7 +103,7 @@ export default function Header(props) {
           </Link>
         </div>
         <div css={rightMenuWrapperStyles}>
-          <Link href="/products">Products</Link>
+          <Link href="/products" data-test-id="products-link">Products</Link>
 
           <div css={cartWrapperStyles}>
             <Link href="/cart">Shopping Cart</Link>

@@ -7,6 +7,35 @@ const featuredSectionStyles = css`
   justify-content: space-evenly;
 `;
 
+const heroHeadlineWrapperStyles = css`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const heroHeadlineStyles = css`
+  position: relative;
+  z-index: 10;
+  font-size: 60px;
+  padding-top: 60px;
+`;
+
+const heroIntroTextWrapperStyles = css`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const heroIntroTextStyles = css`
+  font-size: 25px;
+  font-weight: 400;
+  color: #6b6b6b;
+  padding-bottom: 50px;
+`;
+
+const centerFlexWrapperStyles = css`
+  display: flex;
+  justify-content: space-around;
+`;
+
 export default function Home() {
   return (
     <div>
@@ -24,38 +53,32 @@ export default function Home() {
             className="heroStage"
             css={css`
               position: relative;
-              width: 100vw;
-              height: 66vw;
             `}
           >
-            <h1
-              css={css`
-                position: relative;
-                z-index: 10;
-              `}
-            >
-              Delivering the future
-            </h1>
-            <p>Subheadline something something</p>
+            <div css={heroHeadlineWrapperStyles}>
+              <h1 css={heroHeadlineStyles}>Delivering the future</h1>
+            </div>
+            <div css={heroIntroTextWrapperStyles}>
+              <h2 css={heroIntroTextStyles}>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia.
+              </h2>
+            </div>
 
             <div>Keyfigure 1</div>
             <div>Keyfigure 2</div>
           </div>
           <div className="featured">
             <section>
-              <h2>Hot deals:</h2>
-              <p>The best deals will be presented here</p>
+              <div css={centerFlexWrapperStyles}>
+                <h2>Next generation assistive technologies</h2>
+              </div>
+
               <div className="featuredSection" css={featuredSectionStyles}>
                 <div>Card 1</div>
                 <div>Card 2</div>
+                <div>Card 3</div>
               </div>
-            </section>
-          </div>
-          <div className="categories">
-            <section>
-              <h2>Links to the products pages</h2>
-              <Link href="/products">Products</Link>
-              <Link href="/concepts">Concepts Studies</Link>
             </section>
           </div>
         </main>

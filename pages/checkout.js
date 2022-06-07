@@ -22,13 +22,14 @@ const formStyles = css`
   flex-direction: column;
   flex-wrap: wrap;
   margin-right: 10px;
+  margin-bottom: 30px;
   border: 1px solid #121212;
   border-radius: 10px;
   padding: 8px;
   padding-top: 25px;
 
   div {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
 
   div label {

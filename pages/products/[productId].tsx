@@ -52,6 +52,16 @@ const inputAmountStyles = css`
   }
 `;
 
+const backToLinkStyles = css`
+  font-size: 16px;
+  color: #6b6b6b;
+  margin-top: 10px;
+
+  a::before {
+    content: '< ';
+  }
+`;
+
 const galleryStyles = css`
   padding-top: 10px;
   padding-bottom: 50px;
@@ -159,6 +169,7 @@ export default function Product(props: Props) {
 
       <div css={itemProfileStyle}>
         <Image
+          data-test-id="product-image"
           src={`/${props.product.itemId}-${props.product.itemShortName}.jpg`}
           alt="Picture of the selected product"
           width="600"
@@ -166,8 +177,19 @@ export default function Product(props: Props) {
         />
         <div css={itemDataStyles}>
           <div>{props.product.itemDescription}</div>
-          <div>Price: {props.product.itemPrice / 100} €</div>
-          <div>in Stock: {props.product.itemStockQuantity}</div>
+          <div>
+            Price:{' '}
+            <span data-test-id="product-price">
+              {props.product.itemPrice / 100}
+            </span>{' '}
+            €
+          </div>
+          <div>
+            in Stock:{' '}
+            <span data-test-id="product-quantity">
+              {props.product.itemStockQuantity}
+            </span>
+          </div>
 
           <div css={inputAmountStyles}>
             <label
@@ -192,6 +214,7 @@ export default function Product(props: Props) {
               />
             </label>
             <button
+              data-test-id="product-add-to-cart"
               disabled={props.product.itemStockQuantity === 0 ? true : false}
               onClick={() => {
                 // ternary here removed because TS
@@ -242,6 +265,8 @@ export default function Product(props: Props) {
             >
               Add to cart
             </button>
+          </div>
+          <div css={backToLinkStyles}>
             <Link href="/products">back to products</Link>
           </div>
         </div>

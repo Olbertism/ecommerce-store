@@ -26,9 +26,15 @@ const sql = connectOneTimeToDatabase();
 
 // Functions for item inventory
 export async function getItems() {
-  const items = await sql<DatabaseItemsType[]>`
+  let items: DatabaseItemsType[] = []
+  try {
+     items = await sql<DatabaseItemsType[]>`
     SELECT * FROM items
-  `;
+  `;}
+  catch (error) {
+    console.log(error)
+
+  }
 
   return items.map((item: DatabaseItemsType) => camelcaseKeys(item));
 }

@@ -62,6 +62,7 @@ export default function Products(props) {
         {props.products.map((item) => {
           return (
             <Link
+              data-test-id={`product-${item.itemId}`}
               key={`items-products-${item.itemId}`}
               href={`/products/${item.itemId}`}
               css={itemCardLinkStyles}

@@ -26,12 +26,12 @@ type Props = {
   setCartCounter: any;
 };
 
-export default function Cart(props: Props  ) {
+export default function Cart(props: Props) {
   // console.log('props of cart: ', props);
   const [cartState, setCartState] = useState(props.cart);
   const [sum, setSum] = useState(0);
 
- /*  if (!props) {
+  /*  if (!props) {
     return <div>Something went terribly wrong</div>
   } */
 
@@ -60,7 +60,10 @@ export default function Cart(props: Props  ) {
         <div className="cartItemWrapper" css={cartItemWrapperStyles}>
           {cartState.map((cartItem, index) => {
             return (
-              <div key={`cart-${cartItem.itemId}`}>
+              <div
+                key={`cart-${cartItem.itemId}`}
+                data-test-id={`cart-product-${cartItem.itemId}`}
+              >
                 <h2>
                   {
                     props.items.find((item) => {
@@ -68,6 +71,16 @@ export default function Cart(props: Props  ) {
                     }).itemName
                   }
                 </h2>
+                <p>
+                  {(
+                    Math.round(
+                      props.items.find((item) => {
+                        return cartItem.itemId === item.itemId;
+                      }).itemPrice,
+                    ) / 100
+                  ).toFixed(2)}
+                  €
+                </p>
                 <label
                   css={css`
                     margin-right: 5px;
@@ -81,6 +94,7 @@ export default function Cart(props: Props  ) {
                     Amount:
                   </span>
                   <input
+                    data-test-id="cart-product-quantity-<product id>"
                     type="number"
                     ref={refs.current[index]}
                     css={inputAmountStyles}
@@ -110,6 +124,7 @@ export default function Cart(props: Props  ) {
                   />
                 </label>
                 <button
+                  data-test-id={`cart-product-remove-${cartItem.itemId}`}
                   onClick={() => {
                     const updatedCart = cartState.filter((item) => {
                       return item.itemId !== cartItem.itemId;
@@ -131,11 +146,22 @@ export default function Cart(props: Props  ) {
           })}
         </div>
         <div css={sumContainerStyles}>
-          <p>Total sum: {(Math.round(sum) / 100).toFixed(2)} €</p>
+          <p>
+            Total sum:{' '}
+            <span data-test-id="cart-total">
+              {(Math.round(sum) / 100).toFixed(2)}
+            </span>{' '}
+            €
+          </p>
         </div>
         <div>
           <Link href="/checkout">
-            <button data-test-id="cart-checkout">Checkout</button>
+            <button
+              disabled={cartState.length === 0 ? true : false}
+              data-test-id="cart-checkout"
+            >
+              Checkout
+            </button>
           </Link>
         </div>
       </main>
@@ -152,7 +178,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const cart = JSON.parse(context.req.cookies.cart || '[]') as CookieCartType[];
   console.log('cart from cart serverside: ', cart);
 
- /*  if (!databaseItems) {
+  /*  if (!databaseItems) {
     console.log("APPARENTLY DB ITEMS ARE FALSY?...")
     console.log(databaseItems);
     return "What?"
