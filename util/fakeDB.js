@@ -1,6 +1,6 @@
 // This is just a simple mockup to mimic a database. Will be removed once the real thing is in place
 
-const newDBItems = [
+export const newDBItems = [
   {
     itemId: '1',
     itemShortName: 'alta',
