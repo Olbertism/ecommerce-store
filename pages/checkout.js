@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { setStringifiedCookie } from '../util/cookieHandler';
 import { getItems } from '../util/database';
 
 const itemNameStyles = css`
@@ -59,7 +60,14 @@ const entryFieldWrapperStyles = css`
   }
 `;
 
-export default function Checkout(props) {
+const preventDefault = (f) => (e) => {
+  e.preventDefault();
+  f(e);
+};
+
+export default function Checkout(props, { action = '/thankyou' }) {
+  const router = useRouter();
+
   function calculateTotalSum() {
     let total = 0;
     props.cart.map((cartItem) => {
@@ -70,6 +78,20 @@ export default function Checkout(props) {
     });
     return total;
   }
+
+  const handleSubmit = preventDefault(() => {
+    console.log('FORM SUBMITTED');
+    setStringifiedCookie('cart', []);
+    props.setCartCounter(0);
+    router
+      .push({
+        pathname: action,
+        query: { q: '' },
+      })
+      .catch(() => {
+        console.log('Error while doing router.push()');
+      });
+  });
 
   return (
     <div className="mainWrapper">
@@ -104,14 +126,19 @@ export default function Checkout(props) {
                 </div>
               );
             })}
-            <div>Total: {(Math.round(calculateTotalSum()) / 100).toFixed(2)}€</div>
+            <div>
+              Total: {(Math.round(calculateTotalSum()) / 100).toFixed(2)}€
+            </div>
           </div>
           <h2>Customer Information</h2>
           <div css={formWrapperStyles}>
             <form
-              onSubmit={(event) => {
+              /* action="/thankyou"
+              method="get" */
+              onSubmit={handleSubmit}
+              /* onSubmit={(event) => {
                 event.preventDefault();
-              }}
+              }} */
               css={formStyles}
             >
               <div>
