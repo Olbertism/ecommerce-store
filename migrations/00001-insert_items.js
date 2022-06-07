@@ -140,7 +140,7 @@ exports.up = async (sql) => {
   `;
 };
 
-//maybe chain more AND here... not sure if needed...
+// maybe chain more AND here... not sure if needed...
 
 exports.down = async (sql) => {
   for (const dbItem of dbItems) {

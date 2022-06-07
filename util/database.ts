@@ -33,7 +33,7 @@ export async function getItems() {
   return items.map((item: DatabaseItemsType) => camelcaseKeys(item));
 }
 
-export async function getItem(id : number) {
+export async function getItem(id: number) {
   const [item] = await sql<[DatabaseItemsType | undefined]>`
     SELECT
       *

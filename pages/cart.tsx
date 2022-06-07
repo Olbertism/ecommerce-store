@@ -158,5 +158,5 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return "What?"
   } */
 
-  return { props: { cart: cart || [], items: databaseItems || [] } };
+  return { props: { cart: cart, items: databaseItems } };
 }
