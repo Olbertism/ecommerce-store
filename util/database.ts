@@ -3,7 +3,7 @@ import { config } from 'dotenv-safe';
 import postgres from 'postgres';
 import { DatabaseItemsType } from './types';
 
-config();
+config( {allowEmptyValues: true} );
 
 // Type needed for the connection function below
 declare module globalThis {
