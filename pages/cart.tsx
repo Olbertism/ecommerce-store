@@ -66,7 +66,10 @@ export default function Cart(props: Props) {
 
   // refs
   // somehow it works like this... https://stackoverflow.com/questions/54940399/how-target-dom-with-react-useref-in-map/55105849
-  const refs = useRef([createRef<HTMLInputElement>(), createRef<HTMLInputElement>()]);
+  const refs = useRef([
+    createRef<HTMLInputElement>(),
+    createRef<HTMLInputElement>(),
+  ]);
 
   return (
     <div className="mainWrapper">
@@ -141,9 +144,11 @@ export default function Cart(props: Props) {
                 <button
                   data-test-id={`cart-product-remove-${cartItem.itemId}`}
                   onClick={() => {
-                    const updatedCart = cartState.filter((item: CookieCartType) => {
-                      return item.itemId !== cartItem.itemId;
-                    });
+                    const updatedCart = cartState.filter(
+                      (item: CookieCartType) => {
+                        return item.itemId !== cartItem.itemId;
+                      },
+                    );
                     console.log('after remove filter: ', updatedCart);
                     setStringifiedCookie('cart', updatedCart);
                     setCartState(updatedCart);

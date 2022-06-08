@@ -87,7 +87,7 @@ export default function Checkout(props, { action = '/thankyou' }) {
     props.setCartCounter(0);
     router
       .push({
-        pathname: action
+        pathname: action,
       })
       .catch(() => {
         console.log('Error while doing router.push()');

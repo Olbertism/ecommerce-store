@@ -97,7 +97,6 @@ export default function Home() {
                 qui officia.
               </h2>
             </div>
-
           </div>
           <div className="featured">
             <section>

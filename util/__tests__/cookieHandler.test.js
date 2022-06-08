@@ -6,7 +6,6 @@ import {
   setStringifiedCookie,
 } from '../cookieHandler';
 
-
 test('set, get, update and delete a cart cookie', () => {
   const cookie = { key: 'cart', value: [{ itemId: 1, itemQuantity: 1 }] };
 
