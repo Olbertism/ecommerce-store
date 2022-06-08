@@ -20,8 +20,8 @@ const sumContainerStyles = css`
 `;
 
 type Props = {
-  cart: CookieCartType[];
-  items: DatabaseItemsType[];
+  cart: CookieCartType[] | any;
+  items: DatabaseItemsType[] | any;
   cartCounter: number;
   setCartCounter: any;
 };
@@ -66,14 +66,14 @@ export default function Cart(props: Props) {
 
   // refs
   // somehow it works like this... https://stackoverflow.com/questions/54940399/how-target-dom-with-react-useref-in-map/55105849
-  const refs = useRef([createRef(), createRef()]);
+  const refs = useRef([createRef<HTMLInputElement>(), createRef<HTMLInputElement>()]);
 
   return (
     <div className="mainWrapper">
       <h1>Selected products</h1>
       <main>
         <div className="cartItemWrapper" css={cartItemWrapperStyles}>
-          {cartState.map((cartItem, index) => {
+          {cartState.map((cartItem: CookieCartType, index: number) => {
             return (
               <div
                 key={`cart-${cartItem.itemId}`}
@@ -81,7 +81,7 @@ export default function Cart(props: Props) {
               >
                 <h2>
                   {
-                    props.items.find((item) => {
+                    props.items.find((item: DatabaseItemsType) => {
                       return cartItem.itemId === item.itemId;
                     }).itemName
                   }
@@ -89,7 +89,7 @@ export default function Cart(props: Props) {
                 <p>
                   {(
                     Math.round(
-                      props.items.find((item) => {
+                      props.items.find((item: DatabaseItemsType) => {
                         return cartItem.itemId === item.itemId;
                       }).itemPrice,
                     ) / 100
@@ -115,7 +115,7 @@ export default function Cart(props: Props) {
                     css={inputAmountStyles}
                     min="1"
                     max={
-                      props.items.find((item) => {
+                      props.items.find((item: DatabaseItemsType) => {
                         return cartItem.itemId === item.itemId;
                       }).itemStockQuantity
                     }
@@ -123,7 +123,7 @@ export default function Cart(props: Props) {
                     onChange={(event) => {
                       console.log(event);
                       const updatedCart = cartState.slice();
-                      updatedCart.find((item) => {
+                      updatedCart.find((item: CookieCartType) => {
                         return item.itemId === cartItem.itemId;
                       }).itemQuantity = Number(event.currentTarget.value);
                       let newTotalNumberOfItems = 0;
@@ -141,7 +141,7 @@ export default function Cart(props: Props) {
                 <button
                   data-test-id={`cart-product-remove-${cartItem.itemId}`}
                   onClick={() => {
-                    const updatedCart = cartState.filter((item) => {
+                    const updatedCart = cartState.filter((item: CookieCartType) => {
                       return item.itemId !== cartItem.itemId;
                     });
                     console.log('after remove filter: ', updatedCart);
@@ -150,7 +150,7 @@ export default function Cart(props: Props) {
 
                     props.setCartCounter(
                       props.cartCounter -
-                        Number(refs.current[index].current.value),
+                        Number(refs.current[index].current?.value),
                     );
                   }}
                 >
