@@ -53,7 +53,7 @@ export const itemCardSubheadlineStyles = css`
 export default function Products(props) {
   return (
     <div className="mainWrapper">
-      <h1>Browse our available products</h1>
+      <h1 id="products">Browse our available products</h1>
       <p css={introTextStyles}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.

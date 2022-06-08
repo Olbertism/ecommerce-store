@@ -26,6 +26,20 @@ type Props = {
   setCartCounter: any;
 };
 
+export function calculateTotalSum(
+  cartArray: CookieCartType[],
+  DBarray: Props['items'],
+) {
+  let total = 0;
+  cartArray.map((cartItem: CookieCartType) => {
+    return (total +=
+      DBarray.find((item: DatabaseItemsType) => {
+        return cartItem.itemId === item.itemId;
+      }).itemPrice * cartItem.itemQuantity);
+  });
+  return total;
+}
+
 export default function Cart(props: Props) {
   // console.log('props of cart: ', props);
   const [cartState, setCartState] = useState(props.cart);
@@ -36,7 +50,7 @@ export default function Cart(props: Props) {
   } */
 
   useEffect(() => {
-    function calculateTotalSum() {
+    /* function calculateTotalSum() {
       let total = 0;
       cartState.map((cartItem: CookieCartType) => {
         return (total +=
@@ -46,7 +60,8 @@ export default function Cart(props: Props) {
       });
       setSum(total);
     }
-    calculateTotalSum();
+    calculateTotalSum(); */
+    setSum(calculateTotalSum(cartState, props.items));
   }, [cartState, props.items]);
 
   // refs
@@ -94,7 +109,7 @@ export default function Cart(props: Props) {
                     Amount:
                   </span>
                   <input
-                    data-test-id="cart-product-quantity-<product id>"
+                    data-test-id={`cart-product-quantity-${cartItem.itemId}`}
                     type="number"
                     ref={refs.current[index]}
                     css={inputAmountStyles}

@@ -69,6 +69,7 @@ const preventDefault = (f) => (e) => {
 export default function Checkout(props, { action = '/thankyou' }) {
   const router = useRouter();
 
+  // ey yo lets replace this with an import from the cart, aye?
   function calculateTotalSum() {
     let total = 0;
     props.cart.map((cartItem) => {
@@ -86,8 +87,7 @@ export default function Checkout(props, { action = '/thankyou' }) {
     props.setCartCounter(0);
     router
       .push({
-        pathname: action,
-        query: { q: '' },
+        pathname: action
       })
       .catch(() => {
         console.log('Error while doing router.push()');

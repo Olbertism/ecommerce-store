@@ -59,7 +59,6 @@ const logoStyles = css`
   border: 0;
   max-width: 100%;
   vertical-align: middle;
-
 `;
 
 const cartWrapperStyles = css`
@@ -103,16 +102,18 @@ export default function Header(props) {
           </Link>
         </div>
         <div css={rightMenuWrapperStyles}>
-          <Link href="/products" data-test-id="products-link">Products</Link>
+          <Link href="/products" data-test-id="products-link">
+            Products
+          </Link>
 
           <div css={cartWrapperStyles}>
-            <Link href="/cart">Shopping Cart</Link>
-            <div
-              css={cartCounterStyles}
-              className="cartCounterWrapper"
-              data-test-id="cart-count"
-            >
-              <span css={cartCounterInnerStyles}>{props.cartCounter}</span>
+            <Link href="/cart" passHref>
+              <a data-test-id="cart-link">Shopping Cart</a>
+            </Link>
+            <div css={cartCounterStyles} className="cartCounterWrapper">
+              <span css={cartCounterInnerStyles} data-test-id="cart-count">
+                {props.cartCounter}
+              </span>
             </div>
           </div>
         </div>

@@ -1,11 +1,7 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
-
-const featuredSectionStyles = css`
-  display: flex;
-  justify-content: space-evenly;
-`;
 
 const heroHeadlineWrapperStyles = css`
   display: flex;
@@ -34,6 +30,43 @@ const heroIntroTextStyles = css`
 const centerFlexWrapperStyles = css`
   display: flex;
   justify-content: space-around;
+`;
+
+const featuredSectionStyles = css`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-top: 30px;
+  padding-bottom: 30px;
+`;
+
+const featuredImgWrapperStyles = css`
+  position: relative;
+  width: 380px;
+  height: 250px;
+  border-radius: 10px;
+  background-color: #121212;
+`;
+
+const featuredImgTextStyles = css`
+  color: #fff;
+  background-color: rgba(61, 61, 61, 0.4);
+`;
+
+const buttonSectionStyles = css`
+  display: flex;
+  justify-content: space-around;
+
+  margin: 40px auto;
+
+  button {
+    padding: 8px;
+    font-size: 18px;
+  }
+
+  button::after {
+    content: ' >';
+  }
 `;
 
 export default function Home() {
@@ -65,8 +98,6 @@ export default function Home() {
               </h2>
             </div>
 
-            <div>Keyfigure 1</div>
-            <div>Keyfigure 2</div>
           </div>
           <div className="featured">
             <section>
@@ -75,9 +106,38 @@ export default function Home() {
               </div>
 
               <div className="featuredSection" css={featuredSectionStyles}>
-                <div>Card 1</div>
-                <div>Card 2</div>
-                <div>Card 3</div>
+                <div css={featuredImgWrapperStyles}>
+                  <Image
+                    src="/9-robot.jpg"
+                    alt=""
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <div css={featuredImgTextStyles}>Card 1 inner</div>
+                </div>
+                <div css={featuredImgWrapperStyles}>
+                  <Image
+                    src="/4-circadia.jpg"
+                    alt=""
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <div css={featuredImgTextStyles}>Card 2 inner</div>
+                </div>
+                <div css={featuredImgWrapperStyles}>
+                  <Image
+                    src="/6-electric.jpg"
+                    alt=""
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                  <div css={featuredImgTextStyles}>Card 3 inner</div>
+                </div>
+              </div>
+              <div css={buttonSectionStyles}>
+                <Link href="/products">
+                  <button>Discover our products</button>
+                </Link>
               </div>
             </section>
           </div>
