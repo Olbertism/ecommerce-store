@@ -10,7 +10,6 @@ jobs:
       PGDATABASE: upleveled_ecommerce_main
       PGUSERNAME: upleveled_ecommerce_main
       PGPASSWORD: upleveled_ecommerce_main
-
     steps:
       - name: Start preinstalled PostgreSQL on Ubuntu
         run: |

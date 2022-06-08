@@ -26,7 +26,7 @@ const sql = connectOneTimeToDatabase();
 
 // Functions for item inventory
 export async function getItems() {
-  let items: DatabaseItemsType[] = []
+  let items: DatabaseItemsType[] | undefined = []
   try {
      items = await sql<DatabaseItemsType[]>`
     SELECT * FROM items
