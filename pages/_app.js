@@ -32,6 +32,8 @@ export default function ECommerce({ Component, pageProps }) {
     <>
       <Global
         styles={css`
+          @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600&amp;family=Orbitron:wght@500;600;700&amp;family=Play:wght@400;700&amp;family=Poller+One&amp;display=swap');
+
           html,
           body {
             margin: 0;
