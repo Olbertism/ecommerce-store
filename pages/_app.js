@@ -1,6 +1,7 @@
 import { css, Global } from '@emotion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../components/Layout.js';
+import { getParsedCookie } from '../util/cookieHandler.ts';
 
 // import { getParsedCookie } from '../util/cookieHandler';
 
@@ -9,32 +10,36 @@ export default function ECommerce({ Component, pageProps, props }) {
   console.log('_app props is: ', props); */
 
   // This here would be the better approach, but needs more work...
-  /* useEffect(() => {
-    const test = getParsedCookie('cart');
-    console.log('TEST COOKIE:', test);
-  }, []); */
+  const [cartCounter, setCartCounter] = useState(0);
+
+  useEffect(() => {
+    const cookie = getParsedCookie('cart');
+    let totalCartItems = 0;
+    for (let i = 0; i < cookie.length; i++) {
+      totalCartItems += Number(cookie[i].itemQuantity);
+    }
+    console.log('totalItems: ', totalCartItems);
+    setCartCounter(totalCartItems);
+  }, []);
 
   // this is a stupid workaround, maybe can be removed once i figured out the props issue...
   if (!pageProps) {
     pageProps = {};
   }
-  // yet a second stupid workaround...
+  /* // yet a second stupid workaround...
   if (!props.cookies.cart) {
     props.cookies.cart = '[]';
   }
   const cartCookie = JSON.parse(props.cookies.cart);
 
-  /* console.log('cartCookie:', cartCookie);
-  console.log('cart cookie from _app.js', cartCookie);
-  console.log('cart length in _app.js', cartCookie.length); */
-
   let totalCartItems = 0;
   for (let i = 0; i < cartCookie.length; i++) {
     totalCartItems += Number(cartCookie[i].itemQuantity);
   }
-  console.log('totalItems: ', totalCartItems);
+  console.log('totalItems: ', totalCartItems); */
 
-  const [cartCounter, setCartCounter] = useState(totalCartItems);
+  // old state
+  // const [cartCounter, setCartCounter] = useState(totalCartItems);
 
   console.log('cartCounter:', cartCounter);
 
@@ -123,7 +128,7 @@ export default function ECommerce({ Component, pageProps, props }) {
   );
 }
 
-// Works only on pages where getServerSideProps is present... weird thing...
+/* // Works only on pages where getServerSideProps is present... weird thing...
 ECommerce.getInitialProps = (context) => {
   console.log('-------------------------------');
   // console.log(context.ctx.req)
@@ -140,3 +145,4 @@ export function getServerSideProps(context) {
 
   return { props: { test: 'TEST' } };
 }
+ */
