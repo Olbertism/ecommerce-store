@@ -166,8 +166,6 @@ export default function Product(props: Props) {
           data-test-id="product-image"
           src={`/${props.product.itemId}-${props.product.itemShortName}.jpg`}
           alt="Depiction of the selected product"
-          width="600"
-          height="400"
         />
 
         {/* <Image
