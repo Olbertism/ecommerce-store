@@ -102,8 +102,8 @@ export default function Header(props) {
           </Link>
         </div>
         <div css={rightMenuWrapperStyles}>
-          <Link href="/products" data-test-id="products-link">
-            Products
+          <Link href="/products">
+            <a data-test-id="products-link">Products</a>
           </Link>
 
           <div css={cartWrapperStyles}>
