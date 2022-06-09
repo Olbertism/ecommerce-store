@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/Layout.js';
 import { getParsedCookie } from '../util/cookieHandler.ts';
 
-// import { getParsedCookie } from '../util/cookieHandler';
-
 export default function ECommerce({ Component, pageProps, props }) {
   /* console.log('_app pageProps is: ', pageProps);
   console.log('_app props is: ', props); */

@@ -18,14 +18,3 @@ export default function MyDocument() {
     </Html>
   );
 }
-
-/* export function getServerSideProps(context) {
-  // cart cookie
-  console.log(context.req)
-  const cart = JSON.parse(context.req.cookies.cart || '[]');
-  console.log("im a cart: ", cart);
-  console.log("----------")
-  console.log(cart.length);
-
-  return { props: { cartCounter: cart.length } };
-} */

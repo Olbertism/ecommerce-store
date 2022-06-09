@@ -215,8 +215,6 @@ export default function Checkout(props, { action = '/thankyou' }) {
 }
 
 export async function getServerSideProps(context) {
-  // workaround because of getInitialProps https://github.com/vercel/next.js/discussions/18235
-
   // database items
   const databaseItems = await getItems();
 
