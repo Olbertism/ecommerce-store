@@ -62,31 +62,32 @@ export default function Products(props) {
         {props.products.map((item) => {
           return (
             <Link
-              data-test-id={`product-${item.itemId}`}
               key={`items-products-${item.itemId}`}
               href={`/products/${item.itemId}`}
               css={itemCardLinkStyles}
             >
-              <div className="itemCard" css={itemCardStyles}>
-                <Image
-                  src={`/${item.itemId}-${item.itemShortName}-product.jpg`}
-                  alt=""
-                  width="300"
-                  height="200"
-                  css={itemImageStyles}
-                />
-                <div
-                  css={css`
-                    font-weight: 600;
-                  `}
-                >
-                  {item.itemName}
+              <a data-test-id={`product-${item.itemId}`}>
+                <div className="itemCard" css={itemCardStyles}>
+                  <Image
+                    src={`/${item.itemId}-${item.itemShortName}-product.jpg`}
+                    alt=""
+                    width="300"
+                    height="200"
+                    css={itemImageStyles}
+                  />
+                  <div
+                    css={css`
+                      font-weight: 600;
+                    `}
+                  >
+                    {item.itemName}
+                  </div>
+                  <div css={itemCardSubheadlineStyles}>
+                    {item.itemSubheadline}
+                  </div>
+                  <div>Price: {item.itemPrice / 100} €</div>
                 </div>
-                <div css={itemCardSubheadlineStyles}>
-                  {item.itemSubheadline}
-                </div>
-                <div>Price: {item.itemPrice / 100} €</div>
-              </div>
+              </a>
             </Link>
           );
         })}
