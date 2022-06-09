@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/Layout.js';
 import { getParsedCookie } from '../util/cookieHandler.ts';
 
-export default function ECommerce({ Component, pageProps, props }) {
+export default function ECommerce({ Component, pageProps }) {
   /* console.log('_app pageProps is: ', pageProps);
   console.log('_app props is: ', props); */
 
-  // This here would be the better approach, but needs more work...
   const [cartCounter, setCartCounter] = useState(0);
 
   useEffect(() => {
@@ -20,26 +19,10 @@ export default function ECommerce({ Component, pageProps, props }) {
     setCartCounter(totalCartItems);
   }, []);
 
-  // this is a stupid workaround, maybe can be removed once i figured out the props issue...
+  // I keep this here just in case...
   if (!pageProps) {
     pageProps = {};
   }
-  /* // yet a second stupid workaround...
-  if (!props.cookies.cart) {
-    props.cookies.cart = '[]';
-  }
-  const cartCookie = JSON.parse(props.cookies.cart);
-
-  let totalCartItems = 0;
-  for (let i = 0; i < cartCookie.length; i++) {
-    totalCartItems += Number(cartCookie[i].itemQuantity);
-  }
-  console.log('totalItems: ', totalCartItems); */
-
-  // old state
-  // const [cartCounter, setCartCounter] = useState(totalCartItems);
-
-  console.log('cartCounter:', cartCounter);
 
   pageProps.cartCounter = cartCounter;
   pageProps.setCartCounter = setCartCounter;
@@ -125,22 +108,3 @@ export default function ECommerce({ Component, pageProps, props }) {
     </>
   );
 }
-
-/* // Works only on pages where getServerSideProps is present... weird thing...
-ECommerce.getInitialProps = (context) => {
-  console.log('-------------------------------');
-  // console.log(context.ctx.req)
-  console.log(context.ctx.req.cookies);
-  if (!context.ctx.req.cookies) {
-    return { props: { cookies: [] } };
-  }
-  return { props: { cookies: context.ctx.req.cookies } };
-};
-
-export function getServerSideProps(context) {
-  console.log('-------------------------------');
-  console.log(context.req.cookies);
-
-  return { props: { test: 'TEST' } };
-}
- */
