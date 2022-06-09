@@ -162,13 +162,21 @@ export default function Product(props: Props) {
       <p css={introTextStyles}>{props.product.itemSubheadline}</p>
 
       <div css={itemProfileStyle}>
-        <Image
+        <img
+          data-test-id="product-image"
+          src={`/${props.product.itemId}-${props.product.itemShortName}.jpg`}
+          alt="Depiction of the selected product"
+          width="600"
+          height="400"
+        />
+
+        {/* <Image
           data-test-id="product-image"
           src={`/${props.product.itemId}-${props.product.itemShortName}.jpg`}
           alt="Picture of the selected product"
           width="600"
           height="400"
-        />
+        /> */}
         <div css={itemDataStyles}>
           <div>{props.product.itemDescription}</div>
           <div>
