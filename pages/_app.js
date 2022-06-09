@@ -40,6 +40,12 @@ export default function ECommerce({ Component, pageProps }) {
             font-weight: normal;
             font-style: sans-serif;
           }
+          @font-face {
+            font-family: 'Orbitron';
+            src: url('/fonts/Orbitron-Regular.ttf');
+            font-weight: normal;
+            font-style: sans-serif;
+          }
 
           html,
           body {
