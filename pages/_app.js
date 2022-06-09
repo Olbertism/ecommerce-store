@@ -34,6 +34,13 @@ export default function ECommerce({ Component, pageProps }) {
         styles={css`
           @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600&amp;family=Orbitron:wght@500;600;700&amp;family=Play:wght@400;700&amp;family=Poller+One&amp;display=swap');
 
+          @font-face {
+            font-family: 'Play';
+            src: url('/fonts/Play-Regular.ttf');
+            font-weight: normal;
+            font-style: sans-serif;
+          }
+
           html,
           body {
             margin: 0;

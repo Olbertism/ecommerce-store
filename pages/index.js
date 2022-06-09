@@ -59,6 +59,7 @@ const featuredImgWrapperStyles = css`
   }
 
   img:hover {
+    z-index: 0;
     transition: transform 2s;
     transform: scale(1.15);
   }
@@ -146,7 +147,7 @@ export default function Home() {
                       objectFit="contain"
                     />
 
-                    <div css={featuredImgTextStyles}>Card 1 inner</div>
+                    <div css={featuredImgTextStyles}>Robotics</div>
                   </div>
                 </Link>
                 <Link href="/products">
@@ -157,7 +158,7 @@ export default function Home() {
                       layout="fill"
                       objectFit="contain"
                     />
-                    <div css={featuredImgTextStyles}>Card 2 inner</div>
+                    <div css={featuredImgTextStyles}>Appliances</div>
                   </div>
                 </Link>
                 <Link href="/products">
@@ -168,7 +169,7 @@ export default function Home() {
                       layout="fill"
                       objectFit="contain"
                     />
-                    <div css={featuredImgTextStyles}>Card 3 inner</div>
+                    <div css={featuredImgTextStyles}>Gadgets</div>
                   </div>
                 </Link>
               </div>
