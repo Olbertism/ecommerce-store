@@ -46,11 +46,43 @@ const featuredImgWrapperStyles = css`
   height: 250px;
   border-radius: 10px;
   background-color: #121212;
+  margin-bottom: 20px;
+  filter: grayscale(100%);
+
+  :hover {
+    transition: filter 0.7s;
+    filter: none;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+
+  img:hover {
+    transition: transform 2s;
+    transform: scale(1.15);
+  }
+`;
+
+const featuredImgOverlayStyles = css`
+  position: relative;
+  z-index: 90;
+  width: 380px;
+  height: 250px;
+  // box-shadow: 0 0 0 13px #333;
+  // border-radius: 10px;
 `;
 
 const featuredImgTextStyles = css`
   color: #fff;
+  font-size: 20px;
   background-color: rgba(61, 61, 61, 0.4);
+  position: relative;
+  top: 200px;
+  padding-bottom: 27px;
+  padding-left: 12px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 const buttonSectionStyles = css`
@@ -105,33 +137,40 @@ export default function Home() {
               </div>
 
               <div className="featuredSection" css={featuredSectionStyles}>
-                <div css={featuredImgWrapperStyles}>
-                  <Image
-                    src="/9-robot.jpg"
-                    alt=""
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                  <div css={featuredImgTextStyles}>Card 1 inner</div>
-                </div>
-                <div css={featuredImgWrapperStyles}>
-                  <Image
-                    src="/4-circadia.jpg"
-                    alt=""
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                  <div css={featuredImgTextStyles}>Card 2 inner</div>
-                </div>
-                <div css={featuredImgWrapperStyles}>
-                  <Image
-                    src="/6-electric.jpg"
-                    alt=""
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                  <div css={featuredImgTextStyles}>Card 3 inner</div>
-                </div>
+                <Link href="/products">
+                  <div css={featuredImgWrapperStyles}>
+                    <Image
+                      src="/9-robot-lp.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                    />
+
+                    <div css={featuredImgTextStyles}>Card 1 inner</div>
+                  </div>
+                </Link>
+                <Link href="/products">
+                  <div css={featuredImgWrapperStyles}>
+                    <Image
+                      src="/4-circadia-lp.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                    <div css={featuredImgTextStyles}>Card 2 inner</div>
+                  </div>
+                </Link>
+                <Link href="/products">
+                  <div css={featuredImgWrapperStyles}>
+                    <Image
+                      src="/8-pillsy-lp.jpg"
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                    <div css={featuredImgTextStyles}>Card 3 inner</div>
+                  </div>
+                </Link>
               </div>
               <div css={buttonSectionStyles}>
                 <Link href="/products">

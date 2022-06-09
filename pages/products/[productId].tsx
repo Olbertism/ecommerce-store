@@ -46,10 +46,6 @@ const inputAmountStyles = css`
   button {
     padding-right: 5px;
   }
-
-  button:disabled {
-    background-color: lightgrey;
-  }
 `;
 
 const backToLinkStyles = css`
@@ -141,10 +137,8 @@ export default function Product(props: Props) {
   // refs
   const amountInputField = useRef<null | HTMLInputElement>(null);
 
-  // whats going on here
-  console.log('INVESTIGATE: ', props.product);
   if (props.status === 404) {
-    console.log('404 TRIGGERED!');
+    console.log('404');
     return (
       <div className="mainWrapper">
         <Head>
@@ -205,7 +199,7 @@ export default function Product(props: Props) {
                 type="number"
                 ref={amountInputField}
                 name="quantity"
-                data-test-id='amount-input'
+                data-test-id="amount-input"
                 min="1"
                 max={props.product.itemStockQuantity}
                 defaultValue="1"

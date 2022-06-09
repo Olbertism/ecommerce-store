@@ -60,9 +60,8 @@ export default function ECommerce({ Component, pageProps, props }) {
           }
 
           div.mainWrapper.small {
-              max-width: 900px;
-              
-            }
+            max-width: 900px;
+          }
 
           div.mainWrapper {
             min-height: calc(100vh - 132px);
@@ -72,11 +71,7 @@ export default function ECommerce({ Component, pageProps, props }) {
             position: relative;
             top: 100px;
             padding-bottom: 2.5rem;
-
-
           }
-
-
 
           div.mainWrapper h1 {
             margin-top: 0px;
@@ -105,6 +100,9 @@ export default function ECommerce({ Component, pageProps, props }) {
 
           button:hover {
             background-color: #ff6666;
+          }
+          button:disabled {
+            background-color: lightgrey;
           }
 
           a {
