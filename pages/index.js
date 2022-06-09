@@ -64,14 +64,14 @@ const featuredImgWrapperStyles = css`
   }
 `;
 
-const featuredImgOverlayStyles = css`
+/* const featuredImgOverlayStyles = css`
   position: relative;
   z-index: 90;
   width: 380px;
   height: 250px;
   // box-shadow: 0 0 0 13px #333;
   // border-radius: 10px;
-`;
+`; */
 
 const featuredImgTextStyles = css`
   color: #fff;
