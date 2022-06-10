@@ -33,6 +33,10 @@ export default function ThankYouPage() {
           https://commons.wikimedia.org/wiki/File:Black_Mesa_logo.svg, listed as
           public domain.
         </p>
+        <p>
+          Author: Albert Pichler &ndash;{' '}
+          <a href="https://github.com/Olbertism">Find me on GitHub</a>
+        </p>
       </div>
     </>
   );
