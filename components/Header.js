@@ -67,6 +67,7 @@ const cartWrapperStyles = css`
 `;
 
 const cartCounterStyles = css`
+  cursor: pointer;
   min-width: 32px;
   max-height: 32px;
   border: 1px solid #121212;
@@ -110,11 +111,13 @@ export default function Header(props) {
             <Link href="/cart" passHref>
               <a data-test-id="cart-link">Shopping Cart</a>
             </Link>
-            <div css={cartCounterStyles} className="cartCounterWrapper">
-              <span css={cartCounterInnerStyles} data-test-id="cart-count">
-                {props.cartCounter}
-              </span>
-            </div>
+            <Link href="/cart">
+              <div css={cartCounterStyles} className="cartCounterWrapper">
+                <span css={cartCounterInnerStyles} data-test-id="cart-count">
+                  {props.cartCounter}
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

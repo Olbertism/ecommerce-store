@@ -142,7 +142,7 @@ export default function Home() {
                   <div css={featuredImgWrapperStyles}>
                     <Image
                       src="/9-robot-lp.jpg"
-                      alt=""
+                      alt="A cute robot that looks like E.T. from Steven Spielbergs cult movie from the 80ies."
                       layout="fill"
                       objectFit="contain"
                     />
@@ -154,7 +154,7 @@ export default function Home() {
                   <div css={featuredImgWrapperStyles}>
                     <Image
                       src="/4-circadia-lp.jpg"
-                      alt=""
+                      alt="A weird satellite dish like appliance that might microwave your brain while you are asleep."
                       layout="fill"
                       objectFit="contain"
                     />
@@ -165,7 +165,7 @@ export default function Home() {
                   <div css={featuredImgWrapperStyles}>
                     <Image
                       src="/8-pillsy-lp.jpg"
-                      alt=""
+                      alt="An overexpensive gadget next to a smartphone mockup."
                       layout="fill"
                       objectFit="contain"
                     />
