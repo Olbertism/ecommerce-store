@@ -90,7 +90,7 @@ export default function ECommerce({ Component, pageProps }) {
 
           button {
             background-color: #fc2b2b;
-            color: #fff;
+            color: #121212;
             border: none;
             padding: 3px;
             border-radius: 5px;

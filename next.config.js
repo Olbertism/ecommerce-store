@@ -4,6 +4,10 @@ const nextConfig = {
   experimental: {
     emotion: true,
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 };
 
 module.exports = nextConfig;
