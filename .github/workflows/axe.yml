@@ -12,20 +12,39 @@ jobs:
     # version of Ubuntu (a Linux flavor)
     # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     runs-on: ubuntu-latest
+    env:
+      PGHOST: localhost
+      PGDATABASE: upleveled_ecommerce_main
+      PGUSERNAME: upleveled_ecommerce_main
+      PGPASSWORD: upleveled_ecommerce_main
     steps:
+      - name: Start preinstalled PostgreSQL on Ubuntu
+        run: |
+          sudo systemctl start postgresql.service
+          pg_isready
+      - name: Create database user
+        run: |
+          sudo -u postgres psql --command="CREATE USER upleveled_ecommerce_main PASSWORD 'upleveled_ecommerce_main'" --command="\du"
+      - name: Create database and allow user
+        run: |
+          sudo -u postgres createdb --owner=upleveled_ecommerce_main upleveled_ecommerce_main
       # Use the official Checkout action (clones the GitHub repo):
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v2
       # Use the official setup-node action (sets up Node.js):
       # https://github.com/actions/setup-node
+
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
+      - name: Install dependencies
+      - run: yarn
+      - run: yarn migrate up
+      - name: Build localhost
       # Run the Jest unit tests
-      - run: yarn build --if-present
+      - run: yarn build
       - run: |
           yarn global add @axe-core/cli
           yarn dev
