@@ -206,7 +206,8 @@ export default function Product(props: Props) {
                 type="number"
                 ref={amountInputField}
                 name="quantity"
-                data-test-id="amount-input"
+                data-test-id="product-quantity"
+                /* data-test-id="amount-input" */
                 min="1"
                 max={props.product.itemStockQuantity}
                 defaultValue="1"

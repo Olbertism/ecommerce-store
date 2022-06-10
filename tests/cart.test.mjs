@@ -19,7 +19,7 @@ test('cart page test', async ({ page }) => {
   await expect(headerCounterLocator).toHaveText('1');
 
   // add two more of the same
-  const amountInputLocator = page.locator('data-test-id=amount-input');
+  const amountInputLocator = page.locator('data-test-id=product-quantity');
   await amountInputLocator.fill('2');
   await addToCartButtonLocator.click();
   await expect(headerCounterLocator).toHaveText('3');
