@@ -211,6 +211,10 @@ export default function Product(props: Props) {
                 min="1"
                 max={props.product.itemStockQuantity}
                 defaultValue="1"
+                onInput={(event) => {
+                  if (!event.currentTarget.validity.valid) {
+                    event.currentTarget.value = ""
+                  }}}
                 onChange={(event) => {
                   setSelectedQuantity(Number(event.currentTarget.value));
                 }}
