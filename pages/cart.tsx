@@ -119,6 +119,10 @@ export default function Cart(props: Props) {
                         }).itemStockQuantity
                       }
                       defaultValue={cartItem.itemQuantity}
+                      onInput={(event) => {
+                        if (!event.currentTarget.validity.valid) {
+                          event.currentTarget.value = ""
+                        }}}
                       onChange={(event) => {
                         console.log(event);
                         const updatedCart = cartState.slice();
