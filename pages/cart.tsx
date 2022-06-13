@@ -85,13 +85,14 @@ export default function Cart(props: Props) {
                     }
                   </h2>
                   <p>
-                    {(
+                    {(Math.round(calculateTotalSum([cartItem], props.items)) / 100).toFixed(2)}
+                    {/* {(
                       Math.round(
                         props.items.find((item: DatabaseItemsType) => {
                           return cartItem.itemId === item.itemId;
                         }).itemPrice,
                       ) / 100
-                    ).toFixed(2)}
+                    ).toFixed(2)} */}
                     €
                   </p>
                   <label
