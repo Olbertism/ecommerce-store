@@ -32,7 +32,7 @@ export default function ECommerce({ Component, pageProps }) {
     <>
       <Global
         styles={css`
-          @import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600&amp;family=Orbitron:wght@500;600;700&amp;family=Play:wght@400;700&amp;family=Poller+One&amp;display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&amp;family=Play:wght@400;700&amp;display=swap');
 
           @font-face {
             font-family: 'Play';
@@ -111,6 +111,10 @@ export default function ECommerce({ Component, pageProps }) {
           a:hover {
             text-decoration: underline;
             color: #6f6f6f;
+          }
+
+          p a {
+            color: #fc2b2b;
           }
         `}
       />

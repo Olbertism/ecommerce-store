@@ -42,20 +42,27 @@ const featuredSectionStyles = css`
 
 const featuredImgWrapperStyles = css`
   position: relative;
+  z-index: 0;
   width: 380px;
   height: 250px;
   border-radius: 10px;
   background-color: #121212;
   margin-bottom: 20px;
   filter: grayscale(100%);
+  cursor: pointer;
 
   :hover {
     transition: filter 0.7s;
     filter: none;
+    z-index: 0;
   }
 
   img {
+    position: relative;
+    z-index: 0;
     border-radius: 10px;
+    transition: transform 2s;
+    transform: scale(1);
   }
 
   img:hover {
@@ -74,7 +81,18 @@ const featuredImgWrapperStyles = css`
   // border-radius: 10px;
 `; */
 
+/* const yetAnotherWrapperStyles = css`
+  position: relative;
+  z-index: 1;
+  width: 380px;
+  height: 250px;
+  background-color: rgba(200, 50, 50, 0.5);
+  box-shadow: 0 0 0 13px #333;
+  border-radius: 10px;
+`; */
+
 const featuredImgTextStyles = css`
+  z-index: 1;
   color: #fff;
   font-size: 20px;
   background-color: rgba(61, 61, 61, 0.4);
@@ -89,7 +107,6 @@ const featuredImgTextStyles = css`
 const buttonSectionStyles = css`
   display: flex;
   justify-content: space-around;
-
   margin: 40px auto;
 
   button {
@@ -138,18 +155,20 @@ export default function Home() {
               </div>
 
               <div className="featuredSection" css={featuredSectionStyles}>
-                <Link href="/products">
-                  <div css={featuredImgWrapperStyles}>
-                    <Image
-                      src="/9-robot-lp.jpg"
-                      alt="A cute robot that looks like E.T. from Steven Spielbergs cult movie from the 80ies."
-                      layout="fill"
-                      objectFit="contain"
-                    />
+                <div>
+                  <Link href="/products">
+                    <div css={featuredImgWrapperStyles}>
+                      <Image
+                        src="/9-robot-lp.jpg"
+                        alt="A cute robot that looks like E.T. from Steven Spielbergs cult movie from the 80ies."
+                        layout="fill"
+                        objectFit="contain"
+                      />
 
-                    <div css={featuredImgTextStyles}>Robotics</div>
-                  </div>
-                </Link>
+                      <div css={featuredImgTextStyles}>Robotics</div>
+                    </div>
+                  </Link>
+                </div>
                 <Link href="/products">
                   <div css={featuredImgWrapperStyles}>
                     <Image

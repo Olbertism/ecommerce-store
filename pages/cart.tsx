@@ -106,8 +106,9 @@ export default function Cart(props: Props) {
                     >
                       Amount:
                     </span>
+                    <div data-test-id={`cart-product-quantity-${cartItem.itemId}`}>{cartItem.itemQuantity}</div>
                     <input
-                      data-test-id={`cart-product-quantity-${cartItem.itemId}`}
+                      /* data-test-id={`cart-product-quantity-${cartItem.itemId}`} */
                       type="number"
                       ref={refs.current[index]}
                       css={inputAmountStyles}
