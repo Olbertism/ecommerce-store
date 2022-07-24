@@ -37,14 +37,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
       - name: Install dependencies
-      - run: yarn
+        run: yarn
       - run: yarn migrate up
       - name: Build localhost
-      # Run the Jest unit tests
-      - run: yarn build
+        # Run the Jest unit tests
+        run: yarn build
       - run: |
           yarn global add @axe-core/cli
           yarn dev
