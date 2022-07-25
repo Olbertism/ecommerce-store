@@ -49,5 +49,4 @@ jobs:
         run: yarn build
       - run: |
           yarn global add @axe-core/cli
-          yarn dev
           axe http://localhost:3000 --exit
