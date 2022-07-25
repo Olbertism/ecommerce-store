@@ -28,6 +28,7 @@ jobs:
       - name: Create database and allow user
         run: |
           sudo -u postgres createdb --owner=upleveled_ecommerce_main upleveled_ecommerce_main
+      - uses: actions/checkout@v2
       # Use the official Checkout action (clones the GitHub repo):
       # https://github.com/actions/checkout
       # Use the official setup-node action (sets up Node.js):
