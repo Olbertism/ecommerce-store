@@ -187,7 +187,7 @@ export default function Product(props: Props) {
           </div>
           <div>
             in Stock:{' '}
-            <span data-test-id="product-quantity">
+            <span data-test-id="product-stock-quantity">
               {props.product.itemStockQuantity}
             </span>
           </div>
