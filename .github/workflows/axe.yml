@@ -42,8 +42,6 @@ jobs:
         run: yarn
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
       - run: yarn migrate up
       - name: Build localhost
         # Run the Jest unit tests
