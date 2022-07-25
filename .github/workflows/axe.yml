@@ -40,6 +40,8 @@ jobs:
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
       - name: Install dependencies
         run: yarn
       - run: yarn migrate up
